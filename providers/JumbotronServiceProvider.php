@@ -4,31 +4,31 @@ namespace Pensoft\Searchextension\providers;
 
 use OFFLINE\SiteSearch\Classes\Providers\ResultsProvider;
 
-class EventsServiceProvider extends ResultsProvider
+class JumbotronServiceProvider extends ResultsProvider
 {
     public function search()
     {
         $controller = \Cms\Classes\Controller::getController() ?? new \Cms\Classes\Controller();
         // Get your matching models
-        if(class_exists(\Pensoft\Calendar\Models\Entry::class)){
-            $matching = \Pensoft\Calendar\Models\Entry::where('title', 'ilike', "%{$this->query}%")
-                ->orWhere('description', 'ilike', "%{$this->query}%")
-                ->orWhere('place', 'ilike', "%{$this->query}%")
+        if (class_exists(\Pensoft\Jumbotron\Models\Jumbotron::class)) {
+            $matching = \Pensoft\Jumbotron\Models\Jumbotron::where('title', 'ilike', "%{$this->query}%")
+                ->orWhere('body', 'ilike', "%{$this->query}%")
                 ->get();
-    
+
             // Create a new Result for every match
             foreach ($matching as $match) {
                 $result            = $this->newResult();
-    
+
                 $result->relevance = 1;
                 $result->title     = $match->title;
-                $result->text      = $match->description;
-                $result->url       = $controller->pageUrl('events', ['slug' => $match->slug]);
-                // $result->thumb     = $match->cover_image;
+                $result->text      = $match->body;
+                $result->url       = $controller->pageUrl('about');
+                // $result->thumb     = $match->cover;
                 $result->model     = $match;
-                $result->meta      = [
-                ];
-    
+                // $result->meta      = [
+                //     'some_data' => $match->some_other_property,
+                // ];
+
                 // Add the results to the results collection
                 $this->addResult($result);
             }
@@ -38,11 +38,11 @@ class EventsServiceProvider extends ResultsProvider
     }
     public function displayName()
     {
-        return 'Events';
+        return 'Page';
     }
 
     public function identifier()
     {
-        return 'Pensoft.Events';
+        return 'Pensoft.Jumbotron';
     }
 }
