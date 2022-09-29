@@ -14,6 +14,7 @@ use Pensoft\Searchextension\providers\PresentationsServiceProvider;
 use Pensoft\Searchextension\providers\PressreleasesServiceProvider;
 use Pensoft\Searchextension\providers\VideosServiceProvider;
 use Pensoft\Searchextension\providers\LibraryServiceProvider;
+use Pensoft\Searchextension\providers\UsersServiceProvider;
 use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
@@ -25,9 +26,9 @@ class Plugin extends PluginBase
     public function boot(){
         Event::listen('offline.sitesearch.extend', function () {
             return [
-                new NewsServiceProvider(), 
-                new LinksServiceProvider(), 
-                new EventsServiceProvider(), 
+                new NewsServiceProvider(),
+                new LinksServiceProvider(),
+                new EventsServiceProvider(),
                 new PartnersServiceProvider(),
                 new FlyersServiceProvider(),
                 new LogosServiceProvider(),
@@ -36,6 +37,7 @@ class Plugin extends PluginBase
                 new PressreleasesServiceProvider(),
                 new VideosServiceProvider(),
                 new LibraryServiceProvider(),
+                new UsersServiceProvider(),
             ];
         });
     }
