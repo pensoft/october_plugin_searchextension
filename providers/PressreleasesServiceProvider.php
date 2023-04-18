@@ -22,7 +22,7 @@ class PressreleasesServiceProvider extends ResultsProvider
                 $result->relevance = 1;
                 $result->title     = $match->name;
                 $result->text      = $match->description ?: '';
-//                $result->url       = $match->link ?: $controller->pageUrl('press-releases');
+                $result->url       = $controller->pageUrl('press-releases');
                 // $result->thumb     = null;
                 $result->model     = $match;
                 $result->meta      = [
