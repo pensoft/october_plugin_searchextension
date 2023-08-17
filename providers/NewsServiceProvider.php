@@ -11,9 +11,11 @@ class NewsServiceProvider extends ResultsProvider
         $controller = \Cms\Classes\Controller::getController() ?? new \Cms\Classes\Controller();
         // Get your matching models
         if (class_exists(\Pensoft\Articles\Models\Article::class)) {
-            $matching = \Pensoft\Articles\Models\Article::where('title', 'ilike', "%{$this->query}%")
-                ->orWhere('content', 'ilike', "%{$this->query}%")
-                ->get();
+            $matching = \Pensoft\Articles\Models\Article::where(function ($query) {
+                $query->where('title', 'ilike', "%{$this->query}%")
+                      ->orWhere('content', 'ilike', "%{$this->query}%");
+            })->where('published', true)->get();
+            
 
             // Create a new Result for every match
             foreach ($matching as $match) {
