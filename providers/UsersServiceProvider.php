@@ -3,14 +3,16 @@
 namespace Pensoft\Searchextension\providers;
 
 use OFFLINE\SiteSearch\Classes\Providers\ResultsProvider;
+use RainLab\User\Facades\Auth;
 
 class UsersServiceProvider extends ResultsProvider
 {
     public function search()
     {
+        $user = Auth::getUser();
         $controller = \Cms\Classes\Controller::getController() ?? new \Cms\Classes\Controller();
         // Get your matching models
-        if(class_exists(\Rainlab\User\Models\User::class)){
+        if(class_exists(\Rainlab\User\Models\User::class) && $user){
             $matching = \Rainlab\User\Models\User::where('name', 'ilike', "%{$this->query}%")
                 ->orWhere('surname', 'ilike', "%{$this->query}%")
                 ->orWhere('email', 'ilike', "%{$this->query}%")

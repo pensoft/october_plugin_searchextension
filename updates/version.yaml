@@ -16,3 +16,5 @@
     - 'Fixed partners search'
 1.0.8:
     - 'Fixed partners search in insider members'
+1.0.9:
+    - 'Fixed users search for logged in users only'
