@@ -20,3 +20,5 @@
     - 'Fixed users search for logged in users only'
 1.0.10:
     - 'Fixed users search for logged in users only'
+1.0.11:
+    - 'Added gitignore'
