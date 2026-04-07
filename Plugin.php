@@ -1,0 +1,45 @@
+<?php
+
+namespace Pensoft\Searchextension;
+
+use Illuminate\Support\Facades\Event;
+use Pensoft\Searchextension\providers\EventsServiceProvider;
+use Pensoft\Searchextension\providers\FlyersServiceProvider;
+use Pensoft\Searchextension\providers\LinksServiceProvider;
+use Pensoft\Searchextension\providers\LogosServiceProvider;
+use Pensoft\Searchextension\providers\NewslettersServiceProvider;
+use Pensoft\Searchextension\providers\NewsServiceProvider;
+use Pensoft\Searchextension\providers\PartnersServiceProvider;
+use Pensoft\Searchextension\providers\PresentationsServiceProvider;
+use Pensoft\Searchextension\providers\PressreleasesServiceProvider;
+use Pensoft\Searchextension\providers\VideosServiceProvider;
+use Pensoft\Searchextension\providers\LibraryServiceProvider;
+use Pensoft\Searchextension\providers\UsersServiceProvider;
+use System\Classes\PluginBase;
+
+class Plugin extends PluginBase
+{
+    public $require = [
+        'offline.sitesearch',
+    ];
+
+    public function boot(): void
+    {
+        Event::listen('offline.sitesearch.extend', function (): array {
+            return [
+                new NewsServiceProvider(),
+                new LinksServiceProvider(),
+                new EventsServiceProvider(),
+                new PartnersServiceProvider(),
+                new FlyersServiceProvider(),
+                new LogosServiceProvider(),
+                new NewslettersServiceProvider(),
+                new PresentationsServiceProvider(),
+                new PressreleasesServiceProvider(),
+                new VideosServiceProvider(),
+                new LibraryServiceProvider(),
+                new UsersServiceProvider(),
+            ];
+        });
+    }
+}
