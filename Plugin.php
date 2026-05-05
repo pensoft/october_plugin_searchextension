@@ -28,7 +28,6 @@ class Plugin extends PluginBase
         Event::listen('offline.sitesearch.extend', function (): array {
             return [
                 new NewsServiceProvider(),
-                new LinksServiceProvider(),
                 new EventsServiceProvider(),
                 new PartnersServiceProvider(),
                 new FlyersServiceProvider(),
