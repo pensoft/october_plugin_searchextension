@@ -5,7 +5,6 @@ namespace Pensoft\Searchextension;
 use Illuminate\Support\Facades\Event;
 use Pensoft\Searchextension\providers\EventsServiceProvider;
 use Pensoft\Searchextension\providers\FlyersServiceProvider;
-use Pensoft\Searchextension\providers\LinksServiceProvider;
 use Pensoft\Searchextension\providers\LogosServiceProvider;
 use Pensoft\Searchextension\providers\NewslettersServiceProvider;
 use Pensoft\Searchextension\providers\NewsServiceProvider;
